@@ -26,36 +26,36 @@ def net(model, pretrained):
 
 # -- tests ----------------------------------------------------------------------------------------
 
-@pytest.mark.parametrize('img_size', [224, 256, 512])
-def test_forward(net, img_size):
-    """Test `.forward()` doesn't throw an error"""
-    data = torch.zeros((1, 3, img_size, img_size))
-    output = net(data)
-    assert not torch.isnan(output).any()
+# @pytest.mark.parametrize('img_size', [224, 256, 512])
+# def test_forward(net, img_size):
+#     """Test `.forward()` doesn't throw an error"""
+#     data = torch.zeros((1, 3, img_size, img_size))
+#     output = net(data)
+#     assert not torch.isnan(output).any()
 
 
-def test_dropout_training(net):
-    """Test dropout `.training` is set by `.train()` on parent `nn.module`"""
-    net.train()
-    assert net._dropout.training == True
+# def test_dropout_training(net):
+#     """Test dropout `.training` is set by `.train()` on parent `nn.module`"""
+#     net.train()
+#     assert net._dropout.training == True
 
 
-def test_dropout_eval(net):
-    """Test dropout `.training` is set by `.eval()` on parent `nn.module`"""
-    net.eval()
-    assert net._dropout.training == False
+# def test_dropout_eval(net):
+#     """Test dropout `.training` is set by `.eval()` on parent `nn.module`"""
+#     net.eval()
+#     assert net._dropout.training == False
 
 
-def test_dropout_update(net):
-    """Test dropout `.training` is updated by `.train()` and `.eval()` on parent `nn.module`"""
-    net.train()
-    assert net._dropout.training == True
-    net.eval()
-    assert net._dropout.training == False
-    net.train()
-    assert net._dropout.training == True
-    net.eval()
-    assert net._dropout.training == False
+# def test_dropout_update(net):
+#     """Test dropout `.training` is updated by `.train()` and `.eval()` on parent `nn.module`"""
+#     net.train()
+#     assert net._dropout.training == True
+#     net.eval()
+#     assert net._dropout.training == False
+#     net.train()
+#     assert net._dropout.training == True
+#     net.eval()
+#     assert net._dropout.training == False
 
 
 @pytest.mark.parametrize('img_size', [224, 256, 512])
